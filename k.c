@@ -39,9 +39,9 @@
 // }
 bool is_move_possible(const struct game game)
 {
-    for (int i = 0; i < SIZE; i++)
+    for (int i = 0; i < SIZE-1; i++)
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < SIZE-1; j++)
         {
         if(game.board[i][j]==game.board[i+1][j]||game.board[i][j]==game.board[i][j+1]){
             return true;

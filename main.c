@@ -3,20 +3,42 @@
 #include "k.h"
 int main(){
    
-    // another move is possible
-struct game game = {
-    .board = {
-        {'A', 'A', 'C', 'D'},
-        {'A', 'F', 'G', 'H'},
-        {'I', 'J', 'J', 'A'},
-        {'B', 'C', 'D', 'E'}
-    },
-    .score = 0
-};
+    
 
-printf("is move possible: %d\n", is_move_possible(game));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//     // another move is possible
+// struct game game = {
+//     .board = {
+//         {'A', 'A', 'C', 'D'},
+//         {'A', 'F', 'G', 'H'},
+//         {'I', 'J', 'J', 'A'},
+//         {'B', 'C', 'D', 'E'}
+//     },
+//     .score = 0
+// };
+
+// printf("is move possible: %d\n", is_move_possible(game));
 // // stdout: 1
-// // another move is not possible
+// another move is not possible
 // struct game game = {
 //     .board = {
 //         {'A', 'B', 'C', 'D'},
