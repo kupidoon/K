@@ -52,7 +52,7 @@
 // }
 bool update(struct game *game, int dy, int dx)
 {
-    if (dy > 1 || dy < -1|| dx > 1 || dx < -1)
+    if (dy > 1 || dy < -1 || dx > 1 || dx < -1)
     {
         return false;
     }
@@ -60,34 +60,49 @@ bool update(struct game *game, int dy, int dx)
     {
         return false;
     }
-    if (dx = 1)
+    if (dx == 1)
     {
-        
-        for(int j=0;j<SIZE;j++)
+
+        for (int j = 0; j < SIZE; j++)
         {
-            for(int i=SIZE-1;i!=0;i--)
+            for (int i = SIZE - 1; i != 0; i--)
             {
-                while(game->board[i][j]){
-                    
+
+                while (xz)
+                {
+                    if (game->board[i][j] == ' ')
+                    {
+                        game->board[i][j] = game->board[i - 1][j];
+                        game->board[i - 1][j] = ' ';
+                    }
                 }
             }
         }
-        
+    }
+    if (dx == -1)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            for (int i = 0; i < SIZE; i++)
+            {
+            while(xz){
+                if(game->board[i][j]== ' '){
+                    game->board[i][j]=game->board[i+1][j];
+                    game->board[i+1][j]=' ';
+                }
 
-        
+            }
+            }
+        }
     }
-    if (dx = -1)
+    if (dy == 1)
+    {
+    }
+    if (dy == -1)
     {
     
     }
-    if (dy = 1)
-    {
-    
-    }
-    if (dy = -1)
-    {
-    
-    }
+    return 0;
 }
 // if (dy != 0)
 //     {
