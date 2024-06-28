@@ -62,18 +62,18 @@ bool update(struct game *game, int dy, int dx)
     }
     if (dx == 1)
     {
-
         for (int j = 0; j < SIZE; j++)
         {
-            for (int i = SIZE - 1; i != 0; i--)
+            for (int i = SIZE - 1; i > -1; i--)
             {
-
-                while (xz)
+                if (game->board[j][i] != ' ' && i != SIZE - 1)
                 {
-                    if (game->board[i][j] == ' ')
+                    int x = i;
+                    while (game->board[j][x + 1] == ' ' && x != SIZE - 1)
                     {
-                        game->board[i][j] = game->board[i - 1][j];
-                        game->board[i - 1][j] = ' ';
+                        game->board[j][x + 1] = game->board[j][x];
+                        game->board[j][x] = ' ';
+                        x++;
                     }
                 }
             }
@@ -85,24 +85,58 @@ bool update(struct game *game, int dy, int dx)
         {
             for (int i = 0; i < SIZE; i++)
             {
-            while(xz){
-                if(game->board[i][j]== ' '){
-                    game->board[i][j]=game->board[i+1][j];
-                    game->board[i+1][j]=' ';
+                if (game->board[j][i] != ' ' && i != 0)
+                {
+                    int x = i;
+                    while (game->board[j][x - 1] == ' ' && x != 0)
+                    {
+                        game->board[j][x - 1] = game->board[j][x];
+                        game->board[j][x] = ' ';
+                        x--;
+                    }
                 }
-
-            }
             }
         }
     }
     if (dy == 1)
     {
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE; j++)
+            {
+                if (game->board[j][i] != ' ' && j != 0)
+                {
+                    int x = j;
+                    while (game->board[x - 1][i] == ' ' && x != 0)
+                    {
+                        game->board[x - 1][i] = game->board[x][i];
+                        game->board[x][i] = ' ';
+                        x--;
+                    }
+                }
+            }
+        }
     }
     if (dy == -1)
     {
-    
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = SIZE-1; j >-1; j--)
+            {
+                if (game->board[j][i] != ' ' && j != SIZE-1)
+                {
+                int x=j;
+                while(game->board[x+1][i]==' ' && x!=SIZE-1){
+                    game->board[x+1][i]=game->board[x][i];
+                    game->board[x][i]=' ';
+                    x++;
+                }
+                }
+            }
+        }
     }
-    return 0;
+
+    return true;
 }
 // if (dy != 0)
 //     {
@@ -146,3 +180,57 @@ bool update(struct game *game, int dy, int dx)
 //             }
 //         }
 //     }
+
+// for (int j = 0; j < SIZE; j++)
+//         {
+//             for (int i = SIZE - 1; i != 0; i--)
+//             {
+
+//                 while (xz)
+//                 {
+//                     if (game->board[i][j] == ' ')
+//                     {
+//                         game->board[i][j] = game->board[i - 1][j];
+//                         game->board[i - 1][j] = ' ';
+//                     }
+//                 }
+//             }
+//         }
+
+// for (int j = 0; j < SIZE; j++)
+//         {
+//             for (int i = 0; i < SIZE; i++)
+//             {
+//                 while (xz)
+//                 {
+//                     if (game->board[i][j] == ' ')
+//                     {
+//                         game->board[i][j] = game->board[i + 1][j];
+//                         game->board[i + 1][j] = ' ';
+//                     }
+//                 }
+//             }
+//         }
+
+// int i = SIZE-1;
+//         int j = 0;
+//         while (i!=1 && j!=4)
+//         {
+//             if (game->board[i - 1][j] != ' ' && game->board[SIZE-1][j]==' ')
+//             {
+//                 while (game->board[i][j] != ' ')
+//                 {
+//                 i--;
+//                 }
+//                 game->board[SIZE-1][j] = game->board[i - 1][j];
+//                 game->board[i - 1][j] = ' ';
+//             }else{
+
+//                i--;
+//             }
+//             if (i == 1)
+//             {
+//                 i = SIZE-1;
+//                 j++;
+//             }
+//         }
