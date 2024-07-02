@@ -9,12 +9,12 @@ int main()
     // move right
     struct game game = {
         .board = {
-            {' ', ' ', ' ', ' '},
-            {'A', 'D', 'A', ' '},
-            {' ', 'B', 'C', 'D'},
-            {' ', ' ', ' ', 'C'}},
+            {'A', 'A', 'A', 'A'},
+            {'A', ' ', ' ', 'A'},
+            {'A', 'A', 'A', 'A'},
+            {' ', ' ', ' ', ' '}},
         .score = 0};
-    bool result = update(&game, -1, 0);
+    bool result = update(&game, 1, 0);
     printf("%i\n", result);
     for (int i = 0; i < SIZE ; i++)
     {

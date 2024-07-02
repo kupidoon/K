@@ -78,6 +78,28 @@ bool update(struct game *game, int dy, int dx)
                 }
             }
         }
+        for (int j = 0; j < SIZE; j++)
+        {
+            for (int i = SIZE - 1; i > -1; i--)
+            {
+
+                if (game->board[j][i] != ' ')
+                {
+                    if (game->board[j][i] == game->board[j][i - 1])
+                    {
+                        game->board[j][i]++;
+                        game->board[j][i - 1] = ' ';
+                    }
+                }
+                int x = i;
+                while (game->board[j][x + 1] == ' ' && x != SIZE - 1)
+                {
+                    game->board[j][x + 1] = game->board[j][x];
+                    game->board[j][x] = ' ';
+                    x++;
+                }
+            }
+        }
     }
     if (dx == -1)
     {
@@ -97,8 +119,30 @@ bool update(struct game *game, int dy, int dx)
                 }
             }
         }
+        for (int j = 0; j < SIZE; j++)
+        {
+            for (int i = 0; i < SIZE; i++)
+            {
+
+                if (game->board[j][i] != ' ')
+                {
+                    if (game->board[j][i] == game->board[j][i + 1])
+                    {
+                        game->board[j][i]++;
+                        game->board[j][i + 1] = ' ';
+                    }
+
+                    while (game->board[j][i - 1] == ' ' && i != 0)
+                    {
+                        game->board[j][i - 1] = game->board[j][i];
+                        game->board[j][i] = ' ';
+                        i--;
+                    }
+                }
+            }
+        }
     }
-    if (dy == 1)
+    if (dy == -1)
     {
         for (int i = 0; i < SIZE; i++)
         {
@@ -116,26 +160,69 @@ bool update(struct game *game, int dy, int dx)
                 }
             }
         }
-    }
-    if (dy == -1)
-    {
         for (int i = 0; i < SIZE; i++)
         {
-            for (int j = SIZE-1; j >-1; j--)
+            for (int j = 0; j < SIZE; j++)
             {
-                if (game->board[j][i] != ' ' && j != SIZE-1)
+                if (game->board[j][i] != ' ')
                 {
-                int x=j;
-                while(game->board[x+1][i]==' ' && x!=SIZE-1){
-                    game->board[x+1][i]=game->board[x][i];
-                    game->board[x][i]=' ';
-                    x++;
-                }
+                    if (game->board[j][i] == game->board[j + 1][i])
+                    {
+                        game->board[j][i]++;
+                        game->board[j + 1][i] = ' ';
+                    }
+
+                    int x = j;
+                    while (game->board[x - 1][i] == ' ' && x != 0)
+                    {
+                        game->board[x - 1][i] = game->board[x][i];
+                        game->board[x][i] = ' ';
+                        x--;
+                    }
                 }
             }
         }
     }
-
+    if (dy == 1)
+    {
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = SIZE - 1; j > -1; j--)
+            {
+                if (game->board[j][i] != ' ' && j != SIZE - 1)
+                {
+                    int x = j;
+                    while (game->board[x + 1][i] == ' ' && x != SIZE - 1)
+                    {
+                        game->board[x + 1][i] = game->board[x][i];
+                        game->board[x][i] = ' ';
+                        x++;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = SIZE - 1; j > -1; j--)
+            {
+                if (game->board[j][i] != ' ')
+                {
+                    if (game->board[j][i] == game->board[j - 1][i])
+                    {
+                        game->board[j][i]++;
+                        game->board[j - 1][i] = ' ';
+                    }
+                    int x = j;
+                    while (game->board[x + 1][i] == ' ' && x != SIZE - 1)
+                    {
+                        game->board[x + 1][i] = game->board[x][i];
+                        game->board[x][i] = ' ';
+                        x++;
+                    }
+                }
+            }
+        }
+    }
     return true;
 }
 // if (dy != 0)

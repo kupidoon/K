@@ -7,12 +7,15 @@ OUTPUT=k
 # targets
 all: $(OUTPUT)
 
-$(OUTPUT): k.o main.o
+$(OUTPUT): k.o hof.o main.o
 	cppcheck --enable=performance,unusedFunction --error-exitcode=1 *.c
-	$(CC) $(CFLAGS) k.o main.o $(LDLIBS) -o $(OUTPUT)
+	$(CC) $(CFLAGS) k.o hof.o main.o $(LDLIBS) -o $(OUTPUT)
 
 main.o: main.c
 	$(CC) $(CFLAGS) -c main.c $(LDLIBS) -o main.o
+
+k.o: k.c k.h
+	$(CC) $(CFLAGS) -c k.c $(LDLIBS) -o k.o
 
 k.o: k.c k.h
 	$(CC) $(CFLAGS) -c k.c $(LDLIBS) -o k.o
