@@ -3,27 +3,94 @@
 #include "k.h"
 int main()
 {
-    // wrong call
-
-    // result = false
-    // move right
     struct game game = {
         .board = {
-            {'A', 'A', 'A', 'A'},
-            {'A', ' ', ' ', 'A'},
-            {'A', 'A', 'A', 'A'},
+            {' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' '},
+            {' ', ' ', ' ', ' '},
             {' ', ' ', ' ', ' '}},
         .score = 0};
-    bool result = update(&game, 1, 0);
-    printf("%i\n", result);
-    for (int i = 0; i < SIZE ; i++)
+
+    while (!is_game_won(game) && is_move_possible(game))
     {
-        for (int j=0;j<SIZE;j++)
+        int dx = 0;
+        int dy = 0;
+        for (int i = 0; i < SIZE; i++)
         {
-        printf("%c |", game.board[i][j]);
+            int bre = 0;
+            for (int j = 0; j < SIZE; j++)
+            {
+
+                if (game.board[i][j] == ' ')
+                {
+                    add_random_tile(&game);
+                    bre++;
+                    break;
+                }
+            }
+            if (bre == 1)
+            {
+                break;
+            }
         }
-    printf("\n");
+
+        char bukva = ' ';
+        printf("a-left, d-right, s-down, w-up\n");
+        scanf("%c", &bukva);
+        if (bukva == 'A' || bukva == 'a')
+        {
+            dy = 0;
+            dx = -1;
+        }
+        if (bukva == 'W' || bukva == 'w')
+        {
+            dy = -1;
+            dx = 0;
+        }
+        if (bukva == 'd' || bukva == 'D')
+        {
+            dx = 1;
+            dy = 0;
+        }
+        if (bukva == 'S' || bukva == 's')
+        {
+            dx = 0;
+            dy = 1;
+        }
+        update(&game, dy, dx);
+        printf("Kakoito tekst: %d\n", is_move_possible(game));
+        int d = 0;
+        while (d != 10)
+        {
+            printf("\n");
+            d++;
+        }
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE; j++)
+            {
+                printf("%c |", game.board[i][j]);
+            }
+            printf("\n");
+        }
     }
+    if (is_game_won(game) == true)
+    {
+        printf("Starui BOH\n");
+    }
+    if (is_move_possible(game) != true)
+    {
+        printf("Game Over loh\n");
+    }
+
+    // for (int i = 0; i < SIZE ; i++)
+    // {
+    //     for (int j=0;j<SIZE;j++)
+    //     {
+    //     printf("%c |", game.board[i][j]);
+    //     }
+    // printf("\n");
+    // }
 
     //     // another move is possible
     // struct game game = {
